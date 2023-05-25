@@ -1,0 +1,26 @@
+{
+	"key": [{
+		"disk": "Samsung SSD 860 PRO 1TB - S5G8NA0N302589H",
+		"vendor": "Samsung",
+		"model": "SSD 860 PRO 1TB",
+		"firmware_version": "RVM02B6Q",
+		"capacity_bytes": 1024209543168,
+		"rotation_rate": "Solid State Device",
+		"serial_number": "S5G8NA0N302589H",
+		"ata_version": "ACS-4 T13/BSR INCITS 529 revision 5",
+		"sata_version": "SATA 3.1, 6.0 Gb/s (current: 6.0 Gb/s)",
+		"smart_health_status": "PASSED",
+		"poweron_hours": 9789,
+		"reallocated_sector_cnt": 0,
+		"power_cycle_cnt": 58,
+		"temperature": 31,
+		"wear_leveling_cnt": 5,
+		"used_reserved_block_cnt": 0,
+		"runtime_bad_block": 0,
+		"uncorrectable_error_cnt": null,
+		"ecc_error_rate": null,
+		"crc_error_cnt": 0,
+		"por_recovery_cnt": null,
+		"total_lbas_written": 3583688457
+	}]
+}

@@ -99,3 +99,22 @@ $ sudo systemctl status telegraf-smart.service
 
 You can edit this file and change **`"name_override = "smart_hvXX""`** to a suitable name based on your server.
 ## Data Storage
+To store the collected data, we can use Telegraf's output plugins which support a variety of databases. To do so, using the previously mentioned monitoring stacks, we can proceed with rhe following methods:
+- Store the data to [InfluxDB](https://github.com/influxdata/telegraf/tree/master/plugins/outputs/influxdb):
+```
+[[outputs.influxdb]]
+  urls = ["http://127.0.0.1:8086"]
+  database = "smart-linux"
+  skip_database_creation = true
+  username = "telegraf"
+  password = "XXXXXXXX"
+```
+- Publish the data on a desired port of the server for pull-based databases to read and store them ([Prometheus](https://github.com/influxdata/telegraf/tree/master/plugins/outputs/prometheus_client) in this scenario):
+```
+[[outputs.prometheus_client]]
+  listen = ":9229"
+  metric_version = 2
+  collectors_exclude = ["gocollector", "process"]
+```
+## Data Visualization
+

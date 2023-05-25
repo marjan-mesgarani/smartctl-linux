@@ -117,4 +117,6 @@ To store the collected data, we can use Telegraf's output plugins which support 
   collectors_exclude = ["gocollector", "process"]
 ```
 ## Data Visualization
+A sample Grafana dashboard for the collected and stored data:
 
+![smart](https://github.com/marjan-mesgarani/smartctl-linux/assets/96178946/d0277177-62f8-4542-acb4-43290093f9fa)

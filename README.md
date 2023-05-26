@@ -1,6 +1,6 @@
 # smartctl-linux
 A utility for extracting and formatting important S.M.A.R.T statistics from physical disks on Linux in JSON format for further analysis in monitoring tools.
-This utility can be used on HPE, SuperMicro, rackmount servers, etc. which are runnung a Linux OS.
+This utility can be used on HPE, SuperMicro, rackmount servers, etc. which are running a Linux OS.
 
 
 # Dependencies
@@ -34,8 +34,8 @@ At last, we need to create a directory to store the last date and time in which 
 ```
 $ sudo mkdir /opt/smart-log-time
 ```
-## Automating the Sctipt Execution
-To automate the execution of script for producing the result file repeatedly and in specific intervals, we can create a CronJob for it. In this case, we'll set the intervals to half an hour. Note that since the smartctl command used in the script requires root privileges and for security aspects, we should use "sudo" when running crontab. (You can use [this](https://crontab.guru) website to help you with setting the time for your CronJob.)
+## Automating the Script Execution
+To automate the execution of the script for producing the result file repeatedly and in specific intervals, we can create a CronJob for it. In this case, we'll set the intervals to half an hour. Note that since the smartctl command used in the script requires root privileges and for security aspects, we should use "sudo" when running crontab. (You can use [this](https://crontab.guru) website to help you with setting the time for your CronJob.)
 ```
 $ sudo crontab -e
 # S.M.A.R.T
@@ -43,14 +43,14 @@ $ sudo crontab -e
 ```
 
 # Output
-Sample outputs of **/opt/result.txt** is placed in sample **`results`** folder of this repo [here](https://github.com/marjan-mesgarani/smartctl-linux/tree/main/sample%20results). Alternatively, you can check them through below links for ATA/SATA disks and SCSI/SAS disks:
+Sample outputs of **/opt/result.txt** are placed in the sample **`results`** folder of this repo [here](https://github.com/marjan-mesgarani/smartctl-linux/tree/main/sample%20results). Alternatively, you can check them through the below links for ATA/SATA disks and SCSI/SAS disks:
 - [ATA/SATA](https://github.com/marjan-mesgarani/smartctl-linux/blob/main/sample%20results/SATA.txt)
 - [SCSI/SAS](https://github.com/marjan-mesgarani/smartctl-linux/blob/main/sample%20results/SAS.txt)
 
 # Collecting, Storing, and Visualizing the Data
 To keep track of the disks' status, we can collect the produced data above using data collection tools and then store them in a database (preferably time-series databases, to keep a history over time).
 
-In our case, we used TIG (Telegraf/InfluxDB/Grafana) which is a push-based monitoring stack and TPG (Telegraf/Prometheus/Grafana) which is a pull-based stack. Similarly, you can use any other tools to process the output JSON data and visualize it.
+In our case, we used TIG (Telegraf/InfluxDB/Grafana) which is a push-based monitoring stack, and TPG (Telegraf/Prometheus/Grafana) which is a pull-based stack. Similarly, you can use any other tools to process the output JSON data and visualize it.
 ## Data Collection Using Telegraf
 If you don't have Telegraf installed already, you can install it using the below commands and then enable its service to auto-start. Note that you might need to use other package managers based on your OS distribution.
 ```
@@ -70,7 +70,7 @@ $ sudo mkdir -p /opt/telegraf-smart/telegraf.d
 
 # Create the unit file:
 $ sudo nano /etc/systemd/system/telegraf-smart.service
-# Add below content to the file and save it
+# Add the below content to the file and save it
 ####################################################################################################
 [Unit]
 Description=Telegraf Data Collecting Agent
@@ -99,7 +99,7 @@ $ sudo systemctl status telegraf-smart.service
 
 You can edit this file and change **`"name_override = "smart_hvXX""`** to a suitable name based on your server.
 ## Data Storage
-To store the collected data, we can use Telegraf's output plugins which support a variety of databases. To do so, using the previously mentioned monitoring stacks, we can proceed with rhe following methods:
+To store the collected data, we can use Telegraf's output plugins which support a variety of databases. To do so, using the previously mentioned monitoring stacks, we can proceed with the following methods:
 - Store the data to [InfluxDB](https://github.com/influxdata/telegraf/tree/master/plugins/outputs/influxdb):
 ```
 [[outputs.influxdb]]
@@ -117,6 +117,6 @@ To store the collected data, we can use Telegraf's output plugins which support 
   collectors_exclude = ["gocollector", "process"]
 ```
 ## Data Visualization
-A sample Grafana dashboard for the collected and stored data (Available for download on Grafana website [here](https://grafana.com/grafana/dashboards/18836-linuxserver1-s-m-a-r-t-disk-health)):
+A sample Grafana dashboard for the collected and stored data (Available for download on the Grafana website [here](https://grafana.com/grafana/dashboards/18836-linuxserver1-s-m-a-r-t-disk-health)):
 
 ![smart](https://github.com/marjan-mesgarani/smartctl-linux/assets/96178946/35d7e566-7ff3-416f-a88e-ab5493aebe92)

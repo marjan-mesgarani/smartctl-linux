@@ -117,6 +117,6 @@ To store the collected data, we can use Telegraf's output plugins which support 
   collectors_exclude = ["gocollector", "process"]
 ```
 ## Data Visualization
-A sample Grafana dashboard for the collected and stored data:
+A sample Grafana dashboard for the collected and stored data (Available for download on Grafana website [here](https://grafana.com/grafana/dashboards/18836-linuxserver1-s-m-a-r-t-disk-health)):
 
 ![smart](https://github.com/marjan-mesgarani/smartctl-linux/assets/96178946/35d7e566-7ff3-416f-a88e-ab5493aebe92)
